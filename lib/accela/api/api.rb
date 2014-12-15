@@ -15,9 +15,7 @@ module Accela
       headers = headers(auth_type)
       escaped_query = escape_query_values(query)
       HTTParty.get(uri, headers: headers , query: escaped_query).tap do |resp|
-        STDERR.puts resp.request
-        STDERR.puts resp.headers
-        STDERR.puts resp.response
+        STDERR.puts resp.inspect
       end
     end
 
@@ -27,9 +25,7 @@ module Accela
       json_body = JSON.generate(body)
       escaped_query = escape_query_values(query)
       HTTParty.put(uri, headers: headers, query: escaped_query, body: json_body).tap do |resp|
-        STDERR.puts resp.request
-        STDERR.puts resp.headers
-        STDERR.puts resp.response
+        STDERR.puts resp.inspect
       end
     end
 
@@ -39,9 +35,7 @@ module Accela
       json_body = JSON.generate(body)
       escaped_query = escape_query_values(query)
       HTTParty.post(uri, headers: headers, query: escaped_query, body: json_body).tap do |resp|
-        STDERR.puts resp.request
-        STDERR.puts resp.headers
-        STDERR.puts resp.response
+        STDERR.puts resp.inspect
       end
     end
 
