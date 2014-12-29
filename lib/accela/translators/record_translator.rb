@@ -57,6 +57,7 @@ module Accela
         [:scheduled_date, :scheduledDate, :dateTime],
         [:service_provider_code, :serviceProviderCode, :string],
         [:short_notes, :shortNotes, :string],
+        [:status, :status, :Status],
         [:status_date, :statusDate, :dateTime],
         [:total_fee, :totalFee, :double],
         [:total_job_cost, :totalJobCost, :double],
