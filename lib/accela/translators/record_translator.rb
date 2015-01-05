@@ -65,8 +65,7 @@ module Accela
         [:tracking_id, :trackingId, :integer],
         [:type, :type, :Type],
         [:undistributed_cost, :undistributedCost, :double],
-        [:value, :value, :string],
-        [:status, :status, :Status]
+        [:value, :value, :string]
       ]
     end
 
