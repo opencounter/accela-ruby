@@ -1,6 +1,7 @@
 module Accela
   class RecordAPI < APIGroup
-    as_class_method :get_records, :get_all_records, :create_record
+    as_class_method :get_records, :get_all_records, :create_record,
+      :get_all_contacts_for_record, :create_record_fees
 
     def create_record(input)
       raw = input.is_a?(Hash) ? input : input.raw
@@ -59,6 +60,14 @@ module Accela
                       RecordIdTranslator, 
                       RecordId, 
                       *args)
+    end
+
+    def create_record_fees(record_id, input)
+      raw = input.is_a?(Hash) ? input : input.raw
+      payload = FeeTranslator.ruby_to_json([raw])
+      fee_hash  = Accela::V4::CreateRecordFees.result(record_id, payload.first)
+      input_hash = FeeTranslator.json_to_ruby([fee_hash]).first
+      Fee.create(input_hash)
     end
 
   end
