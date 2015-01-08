@@ -72,8 +72,7 @@ module Accela
     end
 
     def update_record_custom_forms(id, input)
-      request_body = [ input.merge("id" => "PA_BRC-GENERAL.cINFORMATION") ]
-      Accela::V4::UpdateRecordCustomForms.result(id, request_body)
+      Accela::V4::UpdateRecordCustomForms.result(id, input)
     end
 
   end
