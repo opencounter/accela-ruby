@@ -17,8 +17,8 @@ module Accela
 
     private
 
-    def fetch_has_many(api_class, translator_class, model_class)
-      fetch_many(api_class, translator_class, model_class, model.id)
+    def fetch_has_many(api_class, translator_class, model_class, *args)
+      fetch_many(api_class, translator_class, model_class, model.id, *args)
     end
 
     def fetch_many(api_class, translator_class, model_class, *args)
