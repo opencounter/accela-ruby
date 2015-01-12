@@ -24,7 +24,7 @@ module Accela
       addresses.each do |i|
         #returned_addresses.push(AddressTranslator.json_to_ruby([i]))
         translated_address = AddressTranslator.json_to_ruby([i])
-        returned_addresses.push(translated_address)
+        returned_addresses.push(Hash[*translated_address.flatten])
       end
       returned_addresses
     end
