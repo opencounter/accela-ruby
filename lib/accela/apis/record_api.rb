@@ -3,7 +3,7 @@ module Accela
     as_class_method :get_records, :get_all_records, :create_record,
       :get_all_contacts_for_record, :create_record_fees,
       :update_record_custom_forms, :update_record_custom_tables,
-      :create_partial_record
+      :create_partial_record, :update_record
 
     def create_record(input)
       raw = input.is_a?(Hash) ? input : input.raw
@@ -88,5 +88,12 @@ module Accela
       Record.create(input_hash)
     end
 
+    def update_record(id, input)
+      raw = input.is_a?(Hash) ? input : input.raw
+      payload = RecordTranslator.ruby_to_json([raw])
+      record_hash  = Accela::V4::UpdateRecord.result(id, payload.first)
+      input_hash = RecordTranslator.json_to_ruby([record_hash]).first
+      Record.create(input_hash)
+    end
   end
 end
