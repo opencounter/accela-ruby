@@ -2,12 +2,13 @@ module Accela
   class ReportAPI < APIGroup
     as_class_method :create_report
 
-    def create_report(id: nil, module_name: nil, payload: nil)
-      unless id && module_name && payload
-        raise BadRequestError.new("Must supply ID and module_name and payload")
+    def create_report(id: nil, module_name: nil, fields: {})
+      unless id && module_name
+        raise BadRequestError.new("Must supply ID and module_name")
       end
       query = { module: module_name}
-      Accela::V4::CreateReport.result(id, query, payload)
+      payload = { parameters: fields }
+      Accela::V4::CreateReport.call(id, query, payload)
     end
   end
 end
